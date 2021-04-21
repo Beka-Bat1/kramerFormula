@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div style="display: flex; flex-direction: column; align-items: center">
+      <h1 style="text-align: center">Hello to Math exam</h1>
+      <h2 style="text-align: center">Krammer Formula</h2>
+
+      <form action="" onsubmit="return false">
+        <div>
+          <input type="number" id="a11" placeholder="a11" />
+          <input type="number" id="a12" placeholder="a12" />
+          <input type="number" id="a13" placeholder="a13" />
+          <input type="number" id="b1" placeholder="b1" />
+        </div>
+
+        <div>
+          <input type="number" id="a21" placeholder="a21" />
+          <input type="number" id="a22" placeholder="a22" />
+          <input type="number" id="a23" placeholder="a23" />
+          <input type="number" id="b2" placeholder="b2" />
+        </div>
+
+        <div>
+          <input type="number" id="a31" placeholder="a31" />
+          <input type="number" id="a32" placeholder="a32" />
+          <input type="number" id="a33" placeholder="a33" />
+          <input type="number" id="b3" placeholder="b3" />
+        </div>
+      </form>
+      <button type="submit" style="margin-top: 1em" onclick="doKramer()">
+        submit input
+      </button>
+      <p id="answer" style="text-align: center"></p>
+      <p id="finalAnswer" style="text-align: center; color: red"></p>
+    </div>
+
+    <script>
+      const answerComponent = document.getElementById("answer")
+      const finAnswer = document.getElementById("finalAnswer")
+
+
+
+      const doKramer = () => {
+
+          const a11 = +document.getElementById("a11").value;
+          const a12 = document.getElementById("a12").value;
+          const a13 = document.getElementById("a13").value;
+
+          const a21 = document.getElementById("a21").value;
+          const a22 = document.getElementById("a22").value;
+          const a23 = document.getElementById("a23").value;
+
+          const a31 = document.getElementById("a31").value;
+          const a32 = document.getElementById("a32").value;
+          const a33 = document.getElementById("a33").value;
+
+          const b1 = document.getElementById("b1").value;
+          const b2 = document.getElementById("b2").value;
+          const b3 = document.getElementById("b3").value;
+
+          console.log(b1, b2, b3)
+
+          let delta = (a11*a22*a33)+(a12*a23*a31)+(a13*a21*a32)-(a13*a22*a31)-(a12*a21*a33)-(a11*a23*a32);
+          let delta_x1 = (b1*a22*a33)+(a12*a23*b3)+(a13*b2*a32)-(a13*a22*b3)-(a12*b2*a33)-(b1*a23*a32);
+          let delta_x2 = (a11*b2*a33)+(b1*a23*a31)+(a13*a21*b3)-(a13*b2*a31)-(b1*a21*a33)-(a11*a23*b3);
+          let delta_x3 = (a11*a22*b3)+(a12*b2*a31)+(b1*a21*a32)-(b1*a22*a31)-(a12*a21*b3)-(a11*b2*a32);
+
+
+
+          answerComponent.innerHTML = "Δ = " + delta + ";\n Δx1 =" + delta_x1 + ";\n Δx2 = " + delta_x2 + ";\n Δx3 = " + delta_x3 ;
+          finAnswer.innerHTML = "x1 = Δx1/Δ = " + delta_x1/delta + "; \n \t" + "x2 = Δx2/Δ = " + delta_x2/delta + "; \n \t" + "x3 = Δx3/Δ = " + delta_x3/delta + "; \n \t"
+
+
+          console.log(delta)
+      }
+    </script>
+  </body>
+</html>
